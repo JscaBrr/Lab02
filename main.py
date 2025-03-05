@@ -1,25 +1,33 @@
-import translator as tr
+import translator
+import dictionary
 
-t = tr.Translator()
+filename = input("nome file txt:")
+t = translator.Translator()
+t.loadDictionary(filename)
 
-
-while(True):
-
+while(True): #ciclo infinito che consente all'utente di interagire con il programma in un ambiente menu-driven, fino a quando l'utente non sceglie di uscire.
     t.printMenu()
 
-    t.loadDictionary("filename.txt")
+    #t.loadDictionary("dictionary.txt")
 
-    txtIn = input()
+    try:
+        i = int(input("\n Scegli un'opzione:"))
 
-    # Add input control here!
+        if i == 1:
+            parola = input("Inserisci la parola e la traduzione (es. 'alieno extraterrestre'): ")
+            t.handleAdd(parola)
+        elif i == 2:
+            parola = input("Inserisci la parola da tradurre: ")
+            t.handleTranslate(parola)
+        elif i == 3:
+            parola = input("Inserisci la parola con '?': ")
+            t.handleWildCard(parola)
+        elif i == 4:
+            print("Chiusura del programma...")
+            break
+        else:
+            print("Opzione non valida")
 
-    if int(txtIn) == 1:
-        print()
-        txtIn = input()
-        pass
-    if int(txtIn) == 2:
-        pass
-    if int(txtIn) == 3:
-        pass
-    if int(txtIn) == 4:
-        break
+    except ValueError:
+        print("Errore: Devi inserire un numero valido.")
+
