@@ -1,11 +1,10 @@
-import translator
+from dictionary import Dictionary
+from translator import Translator
 
-filename = input("nome file txt:")
-t = translator.Translator(filename)
-t.loadDictionary(filename)
+d = Dictionary("dictionary.txt")
+t = Translator(d)
 
-while(True): #ciclo infinito che consente all'utente di interagire con il programma in un ambiente menu-driven, fino a quando l'utente non sceglie di uscire.
-    t.printMenu()
+while(True):
     try:
         i = int(input("\n Scegli un'opzione:"))
         if i == 1:
@@ -24,4 +23,3 @@ while(True): #ciclo infinito che consente all'utente di interagire con il progra
             print("Opzione non valida")
     except ValueError:
         print("Errore: Devi inserire un numero valido.")
-
